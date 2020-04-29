@@ -4,7 +4,7 @@
 #include <DNSServer.h>
 #include "BaseWebServer.h"
 #ifdef USE_LED
-#include "Leds.h"
+//#include "Leds.h"
 #endif
 
 class CaptivePortal : public BaseWebServer {

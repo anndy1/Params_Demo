@@ -2,7 +2,7 @@
 #define __CUSTOMIZATION_H
 
 #define USE_SERIAL // Use UART for output
-#define USE_LED // Use led for visualization
+//#define USE_LED // Use led for visualization
 //#define USE_AUTHORIZATION // Use web page basic authorization
 
 #ifdef USE_AUTHORIZATION

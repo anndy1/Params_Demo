@@ -1,7 +1,8 @@
+#define ESP32
 #include <Arduino.h>
-#include <ESP8266WiFi.h>
+//#include <ESP8266WiFi.h>
 #include "BaseConfig.h"
-#include "Leds.h"
+//#include "Leds.h"
 #include "BaseWebServer.h"
 #include "CaptivePortal.h"
 
@@ -56,7 +57,7 @@ void *Config::getParamPtr(uint8_t index) {
 }
 
 Config *config;
-Led *led;
+//Led *led;
 BaseWebServer *http;
 
 bool wifiConnect() {
@@ -73,12 +74,12 @@ bool wifiConnect() {
     Serial.print(config->_wifi_ssid);
     Serial.print('"');
     lastTry = millis();
-    led->setMode(LED_2HZ);
+    //led->setMode(LED_2HZ);
     while (! WiFi.isConnected()) {
       if (millis() - lastTry > WIFI_TIMEOUT)
         break;
       Serial.print('.');
-      led->delay(500);
+      //led->delay(500);
     }
     if (WiFi.isConnected()) {
       Serial.print(F(" OK (IP "));
@@ -86,13 +87,13 @@ bool wifiConnect() {
       Serial.println(')');
       http->begin();
       lastTry = 0;
-      led->setMode(LED_FADEINOUT);
+      //led->setMode(LED_FADEINOUT);
 
       return true;
     } else {
       Serial.println(F(" FAIL!"));
       lastTry = millis();
-      led->setMode(LED_OFF);
+      //led->setMode(LED_OFF);
 
 //      return false;
     }
@@ -102,7 +103,7 @@ bool wifiConnect() {
 }
 
 void setup() {
-  Serial.begin(115200, SERIAL_8N1, SERIAL_TX_ONLY);
+  Serial.begin(115200);
   Serial.println();
 
   if (! initSPIFFS()) {
@@ -115,10 +116,10 @@ void setup() {
     config->clear();
     Serial.println(F("Use default config"));
   }
-  led = new Led(LED_BUILTIN, LOW);
+  //led = new Led(LED_BUILTIN, LOW);
 
   {
-    CaptivePortal cp(config, led);
+    CaptivePortal cp(config);
 
     cp.exec(60);
   }
@@ -135,5 +136,5 @@ void loop() {
   }
   if (WiFi.isConnected())
     http->_loop();
-  led->delay(1);
+  //led->delay(1);
 }
