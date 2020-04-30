@@ -1,10 +1,5 @@
-#ifdef ESP32
 #include <SPIFFS.h>
 #include <Update.h>
-#else
-#include <FS.h>
-#include <WiFiUdp.h>
-#endif
 #include "BaseWebServer.h"
 #include "StrUtils.h"
 #include "HtmlHelper.h"

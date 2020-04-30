@@ -1,8 +1,4 @@
-#ifdef ESP32
 #include <SPIFFS.h>
-#else
-#include <FS.h>
-#endif
 #include "BaseConfig.h"
 #include "StrUtils.h"
 

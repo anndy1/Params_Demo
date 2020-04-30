@@ -1,11 +1,7 @@
 #ifndef __BASEWEBSERVER_H
 #define __BASEWEBSERVER_H
 
-#ifdef ESP32
 #include <WebServer.h>
-#else
-#include <ESP8266WebServer.h>
-#endif
 #include "Customization.h"
 #include "BaseConfig.h"
 
